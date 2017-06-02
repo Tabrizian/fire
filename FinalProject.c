@@ -2,9 +2,13 @@
 #define F_CPU 1000000UL
 #include<util/delay.h>
 int reset(){
-	//enable buzzer works
-	DDRB=0b00000001;
+	//enable buzzer & ready led
+	DDRB=0b00000011;
 	PORTB=0b00000001;
+}
+void ready()
+{
+	PORTB= PINB | 0b00000010;
 }
 void ringTheBuzzer(){
 	int i;
@@ -15,7 +19,7 @@ void ringTheBuzzer(){
 }
 int main(){
 	reset();
-	ringTheBuzzer();	
+	ready();
 	while(1)
 	{
 	}
