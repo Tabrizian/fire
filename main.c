@@ -8,14 +8,14 @@
 #include "adc.h"
 #include "led.h"
 
-int state = ACITVE_NORMAL;
+int state = ACTIVE_NORMAL;
 
-ISR(USART_RX_vect)
+ISR(USART_RXC_vect)
 {
     if(UDR == 0) {
-        state = ACITVE_NORMAL;
+        state = ACTIVE_NORMAL;
     } else if(UDR == 1) {
-        state = ACITVE_QUIET;
+        state = ACTIVE_QUIET;
     } else if(UDR == 2) {
         state = DEACTIVE;
     }
@@ -39,15 +39,17 @@ int main (void)
         {
             switch(state)
             {
-                case ACITVE_NORMAL:
-                    buzzerOn();
+                case ACTIVE_NORMAL:
+                    ledOn();
                     break;
-                case ACITVE_QUIET:
+                case ACTIVE_QUIET:
                     serialWriteString("Fire \r\n");
                     break;
                 case DEACTIVE:
                     break;
             }
+        } else {
+            ledOff();
         }
     }
 }
