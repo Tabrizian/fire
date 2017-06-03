@@ -6,4 +6,7 @@ all:
 	avr-gcc -mmcu=atmega8 usartTest.o adc.o usart.o buzzer.o -o temp.elf
 	avr-objcopy -O ihex -j .text -j .data temp.elf temp.hex
 
+clean:
+	rm -rf *.o *.hex *.elf
+
 
