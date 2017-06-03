@@ -37,12 +37,14 @@ void serialWriteString(const char *str)
         UDR = str[i];
     }
 }
+
 void serialWriteInt(const int data)
 {
    char  converted[10];
    itoa(data, converted, 10);
    serialWriteString(converted);
 }
+
 char serialRead()
 {
     while ((UCSRA & (1 << RXC)) == 0);
