@@ -14,6 +14,7 @@ int main (void)
 	for (;;) // Loop forever
 	{
         serialWriteInt(adc_smooth(0));
+        serialWriteString("\n\r");
 		PORTB=0b00000001;
 		_delay_ms(1000);
 		PORTB=0b00000000;
