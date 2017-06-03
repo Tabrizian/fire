@@ -29,7 +29,7 @@ uint16_t adc_read(uint8_t channel)
 
 uint16_t adc_smooth(uint8_t channel)
 {
-    int result = 0;
+    uint16_t result = 0;
     int i = 0;
     for(; i < SAMPLE_RATE; i++)
     {
