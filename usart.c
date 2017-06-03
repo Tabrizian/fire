@@ -1,15 +1,16 @@
 #include <avr/io.h>
+#include<stdlib.h>
+#define F_CPU 1000000UL
 #include <util/delay.h>
 
 #include <string.h>
 
 #include "usart.h"
 
-#define F_CPU 1000000UL
 
 // function to initialize UART
 
-void serial_init(int baud_rate, int receive_enable, int transmit_enable)
+void serialInit(int baud_rate, int receive_enable, int transmit_enable)
 {
     int baudrate_prescale = ((F_CPU) / (baud_rate * 16UL) - 1);
 
@@ -21,13 +22,15 @@ void serial_init(int baud_rate, int receive_enable, int transmit_enable)
 
 	UCSRC = (1 << URSEL) | (0 << UMSEL) | (0 << UPM1) | (0 << UPM0) |
         (0 << USBS) | (1 << UCSZ1) | (1 << UCSZ0) | (0 << UCPOL);
-
     UBRRH = (baudrate_prescale >> 8);
     UBRRL = baudrate_prescale;
+	if(baud_rate==9600)
+		UBRRL=6;
+
 
 }
 
-void serial_write(const char *str)
+void serialWriteString(const char *str)
 {
     int i = 0;
     for(; i < strlen(str); i++)
@@ -36,8 +39,13 @@ void serial_write(const char *str)
         UDR = str[i];
     }
 }
-
-char serial_read()
+void serialWriteInt(const int data)
+{
+   char  converted[10];
+   itoa(data,converted,10);
+   serialWriteString(converted);
+}
+char serialRead()
 {
     while ((UCSRA & (1 << RXC)) == 0);
     return UDR;
@@ -45,10 +53,10 @@ char serial_read()
 
 int main (void)
 {
-    serial_init(9600, 1, 1);
+    serialInit(2400, 1, 1);
 	for (;;) // Loop forever
 	{
-        serial_write("Salam");
+        serialWriteInt(1025);
 		PORTB=0b00000001;
 		_delay_ms(1000);
 		PORTB=0b00000000;

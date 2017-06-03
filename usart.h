@@ -1,9 +1,8 @@
 #ifndef USART_H
 #define USART_H
 
-void serial_init(int baud_rate);
-
-void serial_write(const char *str);
-
-void serial_read(char *str, int len);
+void serialInit(int,int,int);
+void serialWriteString(const char*);
+void serialWriteInt(const int);
+char serialRead();
 #endif
