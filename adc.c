@@ -6,7 +6,7 @@
 void adc_init()
 {
     ADCSRA = (1 << ADEN) | (1 << ADPS2) | (1 << ADPS1) | (1 << ADPS0) |
-        (0 << ADSC) | (0 << ADFR) | (0 << ADIF) | (0 << ADIE);
+        (0 << ADSC) | (0 << ADATE) | (0 << ADIF) | (0 << ADIE);
 
     ADMUX  = (0 << REFS1) | (1 << REFS0) | (0 << ADLAR);
 }
@@ -17,7 +17,7 @@ uint16_t adc_read(uint8_t channel)
     ADMUX |= channel;
 
 
-    ADCSR |= (1 << ADSC);
+    ADCSRA |= (1 << ADSC);
 
    while(!(ADCSRA & (1 << ADIF)));
 

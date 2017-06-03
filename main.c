@@ -10,15 +10,15 @@
 
 int state = ACTIVE_NORMAL;
 
-ISR(USART_RXC_vect)
+ISR(USART_RX_vect)
 {
-    if(UDR == 0) {
+    if(UDR0 == '0') {
         state = ACTIVE_NORMAL;
         serialWriteString("Normal mode activated! \r\n");
-    } else if(UDR == 1) {
+    } else if(UDR0 == '1') {
         state = ACTIVE_QUIET;
         serialWriteString("Quit mode activated! \r\n");
-    } else if(UDR == 2) {
+    } else if(UDR0 == '2') {
         state = DEACTIVE;
         serialWriteString("Deactivated! \r\n");
     }
