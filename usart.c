@@ -1,6 +1,11 @@
 #include <avr/io.h>
+#include <util/delay.h>
+
+#include <string.h>
 
 #include "usart.h"
+
+#define F_CPU 1000000UL
 
 // function to initialize UART
 
@@ -24,27 +29,26 @@ void serial_init(int baud_rate, int receive_enable, int transmit_enable)
 
 void serial_write(const char *str)
 {
-
+    int i = 0;
+    for(; i < strlen(str); i++)
+    {
+		while ((UCSRA & (1 << UDRE)) == 0);
+        UDR = str[i];
+    }
 }
 
-void serial_read(char *str, int len)
+char serial_read()
 {
-
+    while ((UCSRA & (1 << RXC)) == 0);
+    return UDR;
 }
 
 int main (void)
 {
-	char ReceivedByte='N';
-//	DDRD=0b00000010;
+    serial_init(9600, 1, 1);
 	for (;;) // Loop forever
 	{
-		//while ((UCSRA & (1 << RXC)) == 0) {}; // Do nothing until data have been received and is ready to be read from UDR
-		//ReceivedByte = UDR; // Fetch the received byte value into the variable "ByteReceived"
-
-		while ((UCSRA & (1 << UDRE)) == 0) {}; // Do nothing until UDR is ready for more data to be written to it
-		UDR = ReceivedByte; // Echo back the received byte back to the computer
-
-
+        serial_write("Salam");
 		PORTB=0b00000001;
 		_delay_ms(1000);
 		PORTB=0b00000000;
