@@ -13,7 +13,7 @@ int main (void)
     DDRB = 0b00000001;
 	for (;;) // Loop forever
 	{
-        serialWriteInt(adc_read(0));
+        serialWriteInt(adc_smooth(0));
 		PORTB=0b00000001;
 		_delay_ms(1000);
 		PORTB=0b00000000;

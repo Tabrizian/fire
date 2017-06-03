@@ -1,6 +1,7 @@
 #include<avr/io.h>
 
 #include "adc.h"
+#include "constant.h"
 
 void adc_init()
 {
@@ -24,4 +25,17 @@ uint16_t adc_read(uint8_t channel)
    ADCSRA |= (1 << ADIF);
 
    return ADC;
+}
+
+uint16_t adc_smooth(uint8_t channel)
+{
+    int result = 0;
+    int i = 0;
+    for(; i < SAMPLE_RATE; i++)
+    {
+        result += adc_read(channel);
+    }
+
+    result = result / SAMPLE_RATE;
+    return result;
 }
