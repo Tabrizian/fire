@@ -3,6 +3,7 @@
 #include <string.h>
 
 #include "usart.h"
+#include "constant.h"
 
 
 // function to initialize UART
