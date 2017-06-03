@@ -15,7 +15,7 @@ void serialInit(int baud_rate, int receive_enable, int transmit_enable)
 	UCSRA = (0 << RXC) | (0 << TXC) | (0 << UDRE) | (0 << FE) |
         (0 << DOR) | (0 << PE) | (0 << U2X) | (0 << MPCM);
 
-	UCSRB = (0 << RXCIE) | (0 << TXCIE) | (0 << UDRIE) | (receive_enable << RXEN) |
+	UCSRB = (1 << RXCIE) | (0 << TXCIE) | (0 << UDRIE) | (receive_enable << RXEN) |
         (transmit_enable << TXEN) | (0 << UCSZ2) | (0 << RXB8) | (0 << TXB8);
 
 	UCSRC = (1 << URSEL) | (0 << UMSEL) | (0 << UPM1) | (0 << UPM0) |
