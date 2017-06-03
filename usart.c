@@ -1,8 +1,5 @@
 #include <avr/io.h>
-#include<stdlib.h>
-#define F_CPU 1000000UL
-#include <util/delay.h>
-
+#include <stdlib.h>
 #include <string.h>
 
 #include "usart.h"
@@ -51,15 +48,3 @@ char serialRead()
     return UDR;
 }
 
-int main (void)
-{
-    serialInit(2400, 1, 1);
-	for (;;) // Loop forever
-	{
-        serialWriteInt(1025);
-		PORTB=0b00000001;
-		_delay_ms(1000);
-		PORTB=0b00000000;
-		_delay_ms(1000);
-	}
-}
