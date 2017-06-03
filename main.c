@@ -14,10 +14,13 @@ ISR(USART_RXC_vect)
 {
     if(UDR == 0) {
         state = ACTIVE_NORMAL;
+        serialWriteString("Normal mode activated! \r\n");
     } else if(UDR == 1) {
         state = ACTIVE_QUIET;
+        serialWriteString("Quit mode activated! \r\n");
     } else if(UDR == 2) {
         state = DEACTIVE;
+        serialWriteString("Deactivated! \r\n");
     }
 
 }
