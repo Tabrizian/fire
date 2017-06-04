@@ -1,8 +1,8 @@
 # Fire!
 Everyday something is in fire. Maybe your house, maybe your life, maybe your gf. 
 This project will help you to keep your house safe from fire. For a life or gf 
-on fire you should visit psychologist. See [https://therapists.psychologytoday.com/
-](here).
+on fire you should visit psychologist. See [here
+](https://therapists.psychologytoday.com/).
 
 ## Usage
 Using this project is pretty easy:
