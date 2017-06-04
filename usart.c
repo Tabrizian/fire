@@ -12,18 +12,18 @@ void serialInit(int baud_rate, int receive_enable, int transmit_enable)
 {
     int baudrate_prescale = ((F_CPU) / (baud_rate * 16UL) - 1);
 
-	UCSRA = (0 << RXC) | (0 << TXC) | (0 << UDRE) | (0 << FE) |
-        (0 << DOR) | (0 << PE) | (0 << U2X) | (0 << MPCM);
+	UCSR0A = (0 << RXC0) | (0 << TXC0) | (0 << UDRE0) | (0 << FE0) |
+        (0 << DOR0) | (0 << UPE0) | (0 << U2X0) | (0 << MPCM0);
 
-	UCSRB = (1 << RXCIE) | (0 << TXCIE) | (0 << UDRIE) | (receive_enable << RXEN) |
-        (transmit_enable << TXEN) | (0 << UCSZ2) | (0 << RXB8) | (0 << TXB8);
+	UCSR0B = (1 << RXCIE0) | (0 << TXCIE0) | (0 << UDRIE0) | (receive_enable << RXEN0) |
+        (transmit_enable << TXEN0) | (0 << UCSZ02) | (0 << RXB80) | (0 << TXB80);
 
-	UCSRC = (1 << URSEL) | (0 << UMSEL) | (0 << UPM1) | (0 << UPM0) |
-        (0 << USBS) | (1 << UCSZ1) | (1 << UCSZ0) | (0 << UCPOL);
-    UBRRH = (baudrate_prescale >> 8);
-    UBRRL = baudrate_prescale;
+	UCSR0C = (0 << UMSEL00) | (0 << UMSEL01) | (0 << UPM01) | (0 << UPM00) |
+        (0 << USBS0) | (1 << UCSZ01) | (1 << UCSZ00) | (0 << UCPOL0);
+    UBRR0H = (baudrate_prescale >> 8);
+    UBRR0L = baudrate_prescale;
 	if(baud_rate==9600)
-		UBRRL=6;
+		UBRR0L=6;
 
 
 }
@@ -33,8 +33,8 @@ void serialWriteString(const char *str)
     int i = 0;
     for(; i < strlen(str); i++)
     {
-		while ((UCSRA & (1 << UDRE)) == 0);
-        UDR = str[i];
+		while ((UCSR0A & (1 << UDRE0)) == 0);
+        UDR0 = str[i];
     }
 }
 
@@ -47,7 +47,7 @@ void serialWriteInt(const int data)
 
 char serialRead()
 {
-    while ((UCSRA & (1 << RXC)) == 0);
-    return UDR;
+    while ((UCSR0A & (1 << RXC0)) == 0);
+    return UDR0;
 }
 
