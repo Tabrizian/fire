@@ -4,5 +4,6 @@
 void serialInit(int,int,int);
 void serialWriteString(const char*);
 void serialWriteInt(const int);
+void serialWriteNextLine();
 char serialRead();
 #endif

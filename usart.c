@@ -51,3 +51,6 @@ char serialRead()
     return UDR0;
 }
 
+void serialWriteNextLine(){
+   serialWriteString("\n\r");
+}
