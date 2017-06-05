@@ -42,6 +42,9 @@ void serialInit(int baud_rate, int receiveEnable, int transmitEnable)
 		UBRR0L=6;
     	if(receiveEnable)
 	sei();
+	if(transmitEnable){
+	serialWriteString("Normal mode Activated!!");
+	serialWriteNewLine();}
 
 }
 
