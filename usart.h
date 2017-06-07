@@ -1,9 +1,10 @@
 #ifndef USART_H
 #define USART_H
 
-void serialInit(int,int,int);
-void serialWriteString(const char*);
-void serialWriteInt(const int);
-void serialWriteNewLine();
-char serialRead();
+void serial_init(int, int, int);
+void serial_write_string(const char*);
+void serial_write_int(const int);
+void serial_write_newline();
+char serial_read();
+
 #endif

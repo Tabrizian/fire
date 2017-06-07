@@ -6,6 +6,7 @@
 #define FIRE_THRESHOLD 480
 #define ASCII_NUMBER_BASE 48
 
-enum machinState{ACTIVE_NORMAL,ACTIVE_QUIET,DEACTIVE};
+enum states {ACTIVE_NORMAL, ACTIVE_QUIET, DEACTIVE};
+
 extern int state;
 #endif

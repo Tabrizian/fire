@@ -5,17 +5,17 @@
 
 #include "led.h"
 
-void ledInit()
+void led_init()
 {
 	DDRB = DDRB | (1 << DDB0);
 }
 
-void ledOn()
+void led_on()
 {
 	PORTB = PINB | 0b00000001;
 }
 
-void ledOff()
+void led_off()
 {
 	PORTB = PINB & 0b11111110;
 }
