@@ -1,10 +1,10 @@
 #ifndef USART_H
 #define USART_H
 
-void adc_init();
+void adcInit();
 
-uint16_t adc_read(uint8_t channel);
+uint16_t adcRead(uint8_t channel);
 
-uint16_t adc_smooth(uint8_t channel);
+uint16_t adcSmooth(uint8_t channel);
 
 #endif
