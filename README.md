@@ -1,5 +1,4 @@
-# Fire!
-[![Travis](https://img.shields.io/travis/Tabrizian/fire.svg?style=flat-square)](https://travis-ci.org/Tabrizian/fire)
+# Fire! [![Travis](https://img.shields.io/travis/Tabrizian/fire.svg?style=flat-square)](https://travis-ci.org/Tabrizian/fire)  
 Everyday something is in fire. Maybe your house, maybe your life, maybe your gf. 
 This project will help you to keep your house safe from fire. For a life or gf 
 on fire you should visit psychologist. See [here
