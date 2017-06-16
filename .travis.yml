@@ -5,3 +5,5 @@ before_install:
 install:
     - apt-get install -qq gcc-avr binutils-avr avr-libc
 script: make
+
+sudo: false
