@@ -1,9 +1,8 @@
 ---
 language: c
 before_install:
-    - apt-get update -qq
+    - sudo apt-get update -qq
 install:
-    - apt-get install -qq gcc-avr binutils-avr avr-libc
+    - sudo apt-get install -qq gcc-avr binutils-avr avr-libc
 script: make
 
-sudo: false
